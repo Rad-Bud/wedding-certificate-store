@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,12 +16,17 @@
         /* ====================== BODY BACKGROUND ====================== */
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #451916; /* اللون الأصلي */
-            background: rgba(69, 25, 22, 0.95) url('img/Artboard\ 2-8.svg') repeat; /* الصورة فوقه */
-            background-repeat: repeat; /* متكررة */
-            background-size: auto; /* حجم طبيعي */
-            
-            background-position: center; /* مركزة */
+            background-color: #451916;
+            /* اللون الأصلي */
+            background: rgba(69, 25, 22, 0.95) url('img/Artboard\ 2-8.svg') repeat;
+            /* الصورة فوقه */
+            background-repeat: repeat;
+            /* متكررة */
+            background-size: auto;
+            /* حجم طبيعي */
+
+            background-position: center;
+            /* مركزة */
             color: #FFFAE8;
             overflow-x: hidden;
             min-height: 100vh;
@@ -41,9 +47,10 @@
             backdrop-filter: blur(12px);
             z-index: 1000;
             direction: ltr;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
             border-bottom: 1px solid rgba(255, 250, 232, 0.15);
         }
+
         .logo {
             width: 70px;
             height: 70px;
@@ -52,17 +59,19 @@
             border: 3px solid #FFFAE8;
             box-shadow: 0 0 10px rgba(255, 250, 232, 0.3);
         }
+
         .store-name {
             font-size: 1.8rem;
             font-weight: 700;
             color: #FFFAE8;
             direction: rtl;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         }
 
         /* ====================== MAIN CONTENT ====================== */
         .main-content {
-            margin-top: 100px; /* مسافة بعد الرأس الثابت */
+            margin-top: 100px;
+            /* مسافة بعد الرأس الثابت */
             padding: 20px;
             max-width: 1200px;
             margin-left: auto;
@@ -76,12 +85,14 @@
             text-align: center;
             margin: 20px 0 40px;
         }
+
         .main-title {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 20px;
             color: #FFFAE8;
         }
+
         .description {
             font-size: 1rem;
             line-height: 1.8;
@@ -99,6 +110,7 @@
             gap: 15px;
             margin: 30px 0;
         }
+
         .sale-badge {
             width: 50px;
             height: 50px;
@@ -112,10 +124,19 @@
             font-size: 0.8rem;
             animation: pulse 2s infinite;
         }
+
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
         }
+
         .price {
             font-size: 3rem;
             font-weight: 700;
@@ -133,11 +154,13 @@
             justify-content: center;
             gap: 10px;
         }
+
         .gallery-item {
             transition: all 0.3s ease;
             border-radius: 10px;
             overflow: hidden;
         }
+
         .gallery-item img {
             width: 100%;
             height: 100%;
@@ -146,6 +169,7 @@
             display: block;
             background-color: transparent;
         }
+
         .gallery-item.side {
             width: 250px;
             height: 300px;
@@ -153,12 +177,13 @@
             filter: blur(2px);
             cursor: pointer;
         }
+
         .gallery-item.center {
             width: 400px;
             height: 400px;
             opacity: 1;
             filter: none;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
         /* Form Section */
@@ -169,10 +194,11 @@
             backdrop-filter: blur(10px);
             border-radius: 40px;
             padding: 40px 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
         }
+
         .form-image {
             position: absolute;
             top: 0;
@@ -188,14 +214,17 @@
             pointer-events: none;
             opacity: 0.95;
         }
+
         .form-container form {
             position: relative;
             z-index: 1;
             background: transparent;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         .form-group label {
             display: block;
             color: #451916;
@@ -203,6 +232,7 @@
             margin-bottom: 8px;
             font-size: 1rem;
         }
+
         .form-group input,
         .form-group select {
             width: 100%;
@@ -215,12 +245,14 @@
             color: #451916;
             transition: all 0.3s ease;
         }
+
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
             border-color: #28a745;
             box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
         }
+
         .submit-btn {
             width: 100%;
             padding: 15px;
@@ -234,18 +266,22 @@
             transition: all 0.3s ease;
             margin-top: 20px;
         }
+
         .submit-btn:hover {
             background: #218838;
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
         }
+
         .submit-btn:active {
             transform: translateY(0);
         }
+
         .submit-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
         }
+
         .success-message {
             display: none;
             background: #28a745;
@@ -256,12 +292,21 @@
             margin-top: 20px;
             animation: slideIn 0.5s ease;
         }
+
         .success-message.show {
             display: block;
         }
+
         @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ====================== Responsive ====================== */
@@ -270,35 +315,44 @@
                 padding: 12px 15px;
                 gap: 8px;
             }
+
             .logo {
                 width: 50px;
                 height: 50px;
             }
+
             .store-name {
                 font-size: 1.3rem;
             }
+
             .main-content {
                 margin-top: 80px;
                 padding: 15px;
             }
+
             .main-title {
                 font-size: 1.6rem;
             }
+
             .price {
                 font-size: 2.5rem;
             }
+
             .gallery {
                 height: 300px;
 
             }
+
             .gallery-item.side {
                 width: 200px;
                 height: 150px;
             }
+
             .gallery-item.center {
                 width: 300px;
                 height: 300px;
             }
+
             .form-container {
                 padding: 30px 20px;
                 margin: 30px 15px;
@@ -310,20 +364,25 @@
                 width: 45px;
                 height: 45px;
             }
+
             .store-name {
                 font-size: 1.1rem;
             }
+
             .main-content {
                 margin-top: 70px;
             }
+
             .price-section {
                 flex-direction: column;
                 gap: 10px;
             }
+
             .gallery-item.center {
                 width: 280px;
                 height: 280px;
             }
+
             .gallery-item.side {
                 width: 180px;
                 height: 130px;
@@ -331,6 +390,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- ====================== HEADER ====================== -->
@@ -346,7 +406,8 @@
         <div class="title-section">
             <h1 class="main-title">💍 شهادة زواج تذكارية أنيقة</h1>
             <p class="description">
-                احتفظ بأجمل لحظة في حياتكما مع شهادة زواج مستوحاة من الجمال الإسلامي، تجمع بين الخط العربي الراقي والزخرفة الذهبية الفاخرة.
+                احتفظ بأجمل لحظة في حياتكما مع شهادة زواج مستوحاة من الجمال الإسلامي، تجمع بين الخط العربي الراقي
+                والزخرفة الذهبية الفاخرة.
                 تم تصميمها لتكون ذكرى خالدة تخلّد ارتباطكما المقدّس في أبهى صورة.
             </p>
         </div>
@@ -371,27 +432,85 @@
         </div>
 
         <!-- Order Form -->
+        <!-- Order Form -->
         <div class="form-container">
             <img src="img/Group 2.svg" alt="شهادة الزواج" class="form-image">
             <form id="orderForm">
                 <div class="form-group">
-                    <label for="phone">📱 رقم الهاتف</label>
+                    <label for="phone">رقم الهاتف</label>
                     <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم هاتفك">
                 </div>
+
+                <!-- الحقل الجديد: الولاية -->
                 <div class="form-group">
-                    <label for="groomName">👤 اسم الزوج</label>
+                    <label for="state">الولاية</label>
+                    <select id="state" name="state" required>
+                        <option value="">اختر الولاية</option>
+                        <option value="أدرار">أدرار</option>
+                        <option value="الشلف">الشلف</option>
+                        <option value="الأغواط">الأغواط</option>
+                        <option value="أم البواقي">أم البواقي</option>
+                        <option value="باتنة">باتنة</option>
+                        <option value="بجاية">بجاية</option>
+                        <option value="بسكرة">بسكرة</option>
+                        <option value="بشار">بشار</option>
+                        <option value="البليدة">البليدة</option>
+                        <option value="البويرة">البويرة</option>
+                        <option value="تمنراست">تمنراست</option>
+                        <option value="تبسة">تبسة</option>
+                        <option value="تلمسان">تلمسان</option>
+                        <option value="تيارت">تيارت</option>
+                        <option value="تيزي وزو">تيزي وزو</option>
+                        <option value="الجزائر">الجزائر</option>
+                        <option value="الجلفة">الجلفة</option>
+                        <option value="جيجل">جيجل</option>
+                        <option value="سطيف">سطيف</option>
+                        <option value="سعيدة">سعيدة</option>
+                        <option value="سكيكدة">سكيكدة</option>
+                        <option value="سيدي بلعباس">سيدي بلعباس</option>
+                        <option value="عنابة">عنابة</option>
+                        <option value="قالمة">قالمة</option>
+                        <option value="قسنطينة">قسنطينة</option>
+                        <option value="المدية">المدية</option>
+                        <option value="مستغانم">مستغانم</option>
+                        <option value="المسيلة">المسيلة</option>
+                        <option value="معسكر">معسكر</option>
+                        <option value="ورقلة">ورقلة</option>
+                        <option value="وهران">وهران</option>
+                        <option value="البيض">البيض</option>
+                        <option value="إليزي">إليزي</option>
+                        <option value="برج بوعريريج">برج بوعريريج</option>
+                        <option value="بومرداس">بومرداس</option>
+                        <option value="الطارف">الطارف</option>
+                        <option value="تندوف">تندوف</option>
+                        <option value="تيسمسيلت">تيسمسيلت</option>
+                        <option value="الوادي">الوادي</option>
+                        <option value="خنشلة">خنشلة</option>
+                        <option value="سوق أهراس">سوق أهراس</option>
+                        <option value="تيبازة">تيبازة</option>
+                        <option value="ميلة">ميلة</option>
+                        <option value="عين الدفلى">عين الدفلى</option>
+                        <option value="النعامة">النعامة</option>
+                        <option value="عين تموشنت">عين تموشنت</option>
+                        <option value="غرداية">غرداية</option>
+                        <option value="غليزان">غليزان</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="groomName">اسم الزوج</label>
                     <input type="text" id="groomName" name="groomName" required placeholder="أدخل اسم الزوج">
                 </div>
                 <div class="form-group">
-                    <label for="brideName">👰 اسم الزوجة</label>
+                    <label for="brideName">اسم الزوجة</label>
                     <input type="text" id="brideName" name="brideName" required placeholder="أدخل اسم الزوجة">
                 </div>
                 <div class="form-group">
-                    <label for="weddingDate">📅 تاريخ الزواج</label>
+                    <label for="weddingDate">تاريخ الزواج</label>
                     <input type="date" id="weddingDate" name="weddingDate" required>
                 </div>
                 <div class="form-group">
-                    <label for="color">🎨 اختيار اللون</label>
+                    <label for="color">اختيار اللون</label>
                     <select id="color" name="color" required>
                         <option value="">اختر اللون</option>
                         <option value="أبيض">أبيض</option>
@@ -402,7 +521,7 @@
                 <button type="submit" class="submit-btn">اطلب الآن</button>
             </form>
             <div class="success-message" id="successMessage">
-                ✅ تم استلام طلبك بنجاح! سنتواصل معك قريباً.
+                تم استلام طلبك بنجاح! سنتواصل معك قريباً.
             </div>
         </div>
     </div>
@@ -434,50 +553,55 @@
         }
 
         // Form Submission
-        const orderForm = document.getElementById('orderForm');
-        const successMessage = document.getElementById('successMessage');
+const orderForm = document.getElementById('orderForm');
+const successMessage = document.getElementById('successMessage');
 
-        orderForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = {
-                phone: document.getElementById('phone').value,
-                groomName: document.getElementById('groomName').value,
-                brideName: document.getElementById('brideName').value,
-                weddingDate: document.getElementById('weddingDate').value,
-                color: document.getElementById('color').value,
-                timestamp: new Date().toLocaleString('ar-DZ')
-            };
+orderForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyR6r55ywlVUv_LTJwMPPjsIiKPswxWs35j72PBZHxwQOqYeeEDVYuR44mUUlBCHO9ewQ/exec';
+    const formData = new FormData();
+    formData.append('phone', document.getElementById('phone').value);
+    formData.append('state', document.getElementById('state').value);
+    formData.append('groomName', document.getElementById('groomName').value);
+    formData.append('brideName', document.getElementById('brideName').value);
+    formData.append('weddingDate', document.getElementById('weddingDate').value);
+    formData.append('color', document.getElementById('color').value);
+    formData.append('timestamp', new Date().toLocaleString('ar-DZ'));
 
-            try {
-                const submitBtn = orderForm.querySelector('.submit-btn');
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'جاري الإرسال...';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwIFJk5_Y5AQs_auahIY5m1gxMjlzYDkyn1HQPRQdwWp1UnUDMvsJkQuclCOTeaTf9w/exec';
 
-                await fetch(scriptURL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
-                });
+    try {
+        const submitBtn = orderForm.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'جاري الإرسال...';
 
-                successMessage.classList.add('show');
-                orderForm.reset();
-
-                setTimeout(() => successMessage.classList.remove('show'), 5000);
-
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'اطلب الآن';
-            } catch (error) {
-                console.error('Error:', error);
-                alert('حدث خطأ في الإرسال. الرجاء المحاولة مرة أخرى.');
-
-                const submitBtn = orderForm.querySelector('.submit-btn');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'اطلب الآن';
-            }
+        const response = await fetch(scriptURL, {
+            method: 'POST',
+            body: formData
+            // لا تستخدم headers ولا JSON ولا no-cors
         });
+
+        const result = await response.json();
+
+        if (result.status === 'success') {
+            successMessage.classList.add('show');
+            orderForm.reset();
+            setTimeout(() => successMessage.classList.remove('show'), 5000);
+        } else {
+            alert('خطأ: ' + result.message);
+        }
+
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'اطلب الآن';
+    } catch (error) {
+        console.error('Error:', error);
+        alert('فشل الإرسال. تأكد من الاتصال بالإنترنت.');
+        const submitBtn = orderForm.querySelector('.submit-btn');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'اطلب الآن';
+    }
+});
     </script>
 </body>
+
 </html>
