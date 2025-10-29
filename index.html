@@ -12,66 +12,61 @@
             box-sizing: border-box;
         }
 
+        /* ====================== BODY BACKGROUND ====================== */
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #451916;
+            background-color: #451916; /* اللون الأصلي */
+            background: rgba(69, 25, 22, 0.95) url('img/Artboard\ 2-8.svg') repeat; /* الصورة فوقه */
+            background-repeat: repeat; /* متكررة */
+            background-size: auto; /* حجم طبيعي */
+            
+            background-position: center; /* مركزة */
             color: #FFFAE8;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            min-height: 400px;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.03;
-        }
-        
-        .hero-overlay {
-            position: absolute;
+        /* ====================== HEADER ====================== */
+        header {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 20px;
+            padding: 15px 20px;
             display: flex;
             align-items: center;
-            justify-content: flex-start; /* Changed to flex-start for LTR layout */
-            gap: 8px;
-            direction: ltr; /* Added LTR direction */
+            justify-content: flex-start;
+            gap: 12px;
+            background-color: rgba(69, 25, 22, 0.92);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            direction: ltr;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            border-bottom: 1px solid rgba(255, 250, 232, 0.15);
         }
-
         .logo {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             object-fit: cover;
+            border: 3px solid #FFFAE8;
+            box-shadow: 0 0 10px rgba(255, 250, 232, 0.3);
         }
-
-        /* ensure the Arabic store name keeps RTL inside the left-aligned overlay */
-        .hero-overlay .store-name {
-            direction: rtl;
-        }
-
         .store-name {
-            font-family: 'Product Sans', 'Tajawal', sans-serif;
-            color: #FFFAE8;
             font-size: 1.8rem;
             font-weight: 700;
+            color: #FFFAE8;
+            direction: rtl;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
         }
 
-        /* Content Container - pull up so title sits directly below the hero overlay/store-name */
-        .container {
-            max-width: 1200px;
-            margin: -700px auto 0; /* negative top margin to place container (title) directly under store-name */
+        /* ====================== MAIN CONTENT ====================== */
+        .main-content {
+            margin-top: 100px; /* مسافة بعد الرأس الثابت */
             padding: 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
             position: relative;
             z-index: 2;
         }
@@ -79,47 +74,14 @@
         /* Title Section */
         .title-section {
             text-align: center;
-            margin: 10px 0 40px; /* reduced top margin since container is pulled up */
+            margin: 20px 0 40px;
         }
-
         .main-title {
             font-size: 2rem;
             font-weight: 700;
             margin-bottom: 20px;
             color: #FFFAE8;
         }
-
-        /* Responsive adjustments for the pulled-up container */
-        @media (max-width: 768px) {
-            .container {
-                margin: -60px auto 0;
-                padding: 15px;
-            }
-
-            .store-name {
-                font-size: 1.2rem;
-            }
-
-            .main-title {
-                font-size: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                margin: -40px auto 0;
-                padding: 12px;
-            }
-
-            .store-name {
-                font-size: 1rem;
-            }
-
-            .main-title {
-                font-size: 1.3rem;
-            }
-        }
-
         .description {
             font-size: 1rem;
             line-height: 1.8;
@@ -137,7 +99,6 @@
             gap: 15px;
             margin: 30px 0;
         }
-
         .sale-badge {
             width: 50px;
             height: 50px;
@@ -151,12 +112,10 @@
             font-size: 0.8rem;
             animation: pulse 2s infinite;
         }
-
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
         }
-
         .price {
             font-size: 3rem;
             font-weight: 700;
@@ -174,13 +133,11 @@
             justify-content: center;
             gap: 10px;
         }
-
         .gallery-item {
             transition: all 0.3s ease;
             border-radius: 10px;
             overflow: hidden;
         }
-
         .gallery-item img {
             width: 100%;
             height: 100%;
@@ -189,7 +146,6 @@
             display: block;
             background-color: transparent;
         }
-
         .gallery-item.side {
             width: 250px;
             height: 300px;
@@ -197,7 +153,6 @@
             filter: blur(2px);
             cursor: pointer;
         }
-
         .gallery-item.center {
             width: 400px;
             height: 400px;
@@ -215,11 +170,9 @@
             border-radius: 40px;
             padding: 40px 30px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            position: relative; /* container is the positioning context */
-            overflow: hidden; /* clip the absolute image to the card */
+            position: relative;
+            overflow: hidden;
         }
-
-        /* Make the image fill the entire card */
         .form-image {
             position: absolute;
             top: 0;
@@ -228,25 +181,21 @@
             bottom: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* expand and crop to cover the card */
+            object-fit: cover;
             object-position: center;
-            border-radius: inherit; /* match the card's rounded corners */
-            z-index: 0; /* sit behind the form contents */
+            border-radius: inherit;
+            z-index: 0;
             pointer-events: none;
-            opacity: 0.95; /* tweak if you want the overlay effect */
+            opacity: 0.95;
         }
-
-        /* Ensure form content sits above the image */
         .form-container form {
             position: relative;
             z-index: 1;
             background: transparent;
         }
-
         .form-group {
             margin-bottom: 20px;
         }
-
         .form-group label {
             display: block;
             color: #451916;
@@ -254,7 +203,6 @@
             margin-bottom: 8px;
             font-size: 1rem;
         }
-
         .form-group input,
         .form-group select {
             width: 100%;
@@ -267,15 +215,12 @@
             color: #451916;
             transition: all 0.3s ease;
         }
-
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
             border-color: #28a745;
             box-shadow: 0 0 10px rgba(40, 167, 69, 0.3);
         }
-
-        /* Submit Button */
         .submit-btn {
             width: 100%;
             padding: 15px;
@@ -289,23 +234,18 @@
             transition: all 0.3s ease;
             margin-top: 20px;
         }
-
         .submit-btn:hover {
             background: #218838;
             transform: translateY(-2px);
             box-shadow: 0 5px 20px rgba(40, 167, 69, 0.4);
         }
-
         .submit-btn:active {
             transform: translateY(0);
         }
-
         .submit-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
         }
-
-        /* Success Message */
         .success-message {
             display: none;
             background: #28a745;
@@ -316,67 +256,50 @@
             margin-top: 20px;
             animation: slideIn 0.5s ease;
         }
-
         .success-message.show {
             display: block;
         }
-
         @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Responsive Design */
+        /* ====================== Responsive ====================== */
         @media (max-width: 768px) {
-            .hero {
-                height: 50vh;
-                min-height: 300px;
+            header {
+                padding: 12px 15px;
+                gap: 8px;
             }
-
             .logo {
                 width: 50px;
                 height: 50px;
             }
-
             .store-name {
-                font-size: 1rem;
+                font-size: 1.3rem;
             }
-
+            .main-content {
+                margin-top: 80px;
+                padding: 15px;
+            }
             .main-title {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
-
-            .description {
-                font-size: 0.9rem;
-                padding: 0 10px;
-            }
-
             .price {
                 font-size: 2.5rem;
             }
-
             .gallery {
                 height: 300px;
                 flex-direction: column;
                 gap: 20px;
             }
-
             .gallery-item.side {
                 width: 200px;
                 height: 150px;
             }
-
             .gallery-item.center {
                 width: 300px;
                 height: 300px;
             }
-
             .form-container {
                 padding: 30px 20px;
                 margin: 30px 15px;
@@ -384,16 +307,24 @@
         }
 
         @media (max-width: 480px) {
+            .logo {
+                width: 45px;
+                height: 45px;
+            }
+            .store-name {
+                font-size: 1.1rem;
+            }
+            .main-content {
+                margin-top: 70px;
+            }
             .price-section {
                 flex-direction: column;
                 gap: 10px;
             }
-
             .gallery-item.center {
                 width: 280px;
                 height: 280px;
             }
-
             .gallery-item.side {
                 width: 180px;
                 height: 130px;
@@ -402,16 +333,16 @@
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <div class="hero">
-        <img src="img/updeco.png" alt="Wedding Background" class="hero-bg">
-        <div class="hero-overlay">
-            <img src="img/Afdsfsset 2.png" alt="Logo" class="logo">
-            <div class="store-name">Store in your House</div>
-        </div>
-    </div>
 
-    <div class="container">
+    <!-- ====================== HEADER ====================== -->
+    <header>
+        <img src="img/Afdsfsset 2.png" alt="Logo" class="logo">
+        <div class="store-name">Store in your House</div>
+    </header>
+
+    <!-- ====================== MAIN CONTENT ====================== -->
+    <div class="main-content">
+
         <!-- Title Section -->
         <div class="title-section">
             <h1 class="main-title">💍 شهادة زواج تذكارية أنيقة</h1>
@@ -443,28 +374,23 @@
         <!-- Order Form -->
         <div class="form-container">
             <img src="img/Group 2.svg" alt="شهادة الزواج" class="form-image">
-            
             <form id="orderForm">
                 <div class="form-group">
                     <label for="phone">📱 رقم الهاتف</label>
                     <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم هاتفك">
                 </div>
-
                 <div class="form-group">
                     <label for="groomName">👤 اسم الزوج</label>
                     <input type="text" id="groomName" name="groomName" required placeholder="أدخل اسم الزوج">
                 </div>
-
                 <div class="form-group">
                     <label for="brideName">👰 اسم الزوجة</label>
                     <input type="text" id="brideName" name="brideName" required placeholder="أدخل اسم الزوجة">
                 </div>
-
                 <div class="form-group">
                     <label for="weddingDate">📅 تاريخ الزواج</label>
                     <input type="date" id="weddingDate" name="weddingDate" required>
                 </div>
-
                 <div class="form-group">
                     <label for="color">🎨 اختيار اللون</label>
                     <select id="color" name="color" required>
@@ -474,25 +400,18 @@
                         <option value="ذهبي">ذهبي</option>
                     </select>
                 </div>
-
                 <button type="submit" class="submit-btn">اطلب الآن</button>
             </form>
-
             <div class="success-message" id="successMessage">
                 ✅ تم استلام طلبك بنجاح! سنتواصل معك قريباً.
             </div>
         </div>
     </div>
 
+    <!-- ====================== JavaScript ====================== -->
     <script>
         // Gallery Carousel
         const galleryItems = document.querySelectorAll('.gallery-item');
-        const images = [
-            'https://images.unsplash.com/photo-1606800052052-a08af7148866?w=400',
-            'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=500',
-            'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400'
-        ];
-        
         let currentIndex = 1;
 
         galleryItems.forEach((item, index) => {
@@ -521,7 +440,6 @@
 
         orderForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-
             const formData = {
                 phone: document.getElementById('phone').value,
                 groomName: document.getElementById('groomName').value,
@@ -531,7 +449,6 @@
                 timestamp: new Date().toLocaleString('ar-DZ')
             };
 
-            // Replace with your Google Apps Script Web App URL
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyR6r55ywlVUv_LTJwMPPjsIiKPswxWs35j72PBZHxwQOqYeeEDVYuR44mUUlBCHO9ewQ/exec';
 
             try {
@@ -539,46 +456,28 @@
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'جاري الإرسال...';
 
-                const response = await fetch(scriptURL, {
+                await fetch(scriptURL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
 
-                // Show success message
                 successMessage.classList.add('show');
                 orderForm.reset();
 
-                // Hide success message after 5 seconds
-                setTimeout(() => {
-                    successMessage.classList.remove('show');
-                }, 5000);
+                setTimeout(() => successMessage.classList.remove('show'), 5000);
 
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'اطلب الآن';
-
             } catch (error) {
                 console.error('Error:', error);
                 alert('حدث خطأ في الإرسال. الرجاء المحاولة مرة أخرى.');
-                
+
                 const submitBtn = orderForm.querySelector('.submit-btn');
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'اطلب الآن';
             }
-        });
-
-        // Smooth scroll for better mobile experience
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
         });
     </script>
 </body>
