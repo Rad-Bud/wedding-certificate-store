@@ -560,7 +560,7 @@ orderForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append('phone', document.getElementById('phone').value);
+    formData.append('phone', '="' + document.getElementById('phone').value + '"' );
     formData.append('state', document.getElementById('state').value);
     formData.append('groomName', document.getElementById('groomName').value);
     formData.append('brideName', document.getElementById('brideName').value);
@@ -605,3 +605,4 @@ orderForm.addEventListener('submit', async (e) => {
 </body>
 
 </html>
+
