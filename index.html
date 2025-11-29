@@ -7,7 +7,7 @@
     <title>شهادة زواج تذكارية أنيقة</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
     <!-- Meta Pixel Code -->
-    <script>
+   <script>
         !function (f, b, e, v, n, t, s) {
             if (f.fbq) return; n = f.fbq = function () {
                 n.callMethod ?
@@ -318,6 +318,7 @@
             }
         }
     </style>
+
 </head>
 
 <body>
@@ -471,7 +472,8 @@
                         <option value="ذهبي">ذهبي</option>
                     </select>
                 </div>
-                <button type="submit" class="submit-btn">اطلب الآن</button>
+
+<button type="submit" class="submit-btn" id="submitBtn" disabled>اطلب الآن</button>
             </form>
             <div class="success-message" id="successMessage">
                 تم استلام طلبك بنجاح! سنتواصل معك قريباً
@@ -480,6 +482,26 @@
     </div>
 
     <script>
+           const galleryItems = document.querySelectorAll(".gallery-item");
+
+    galleryItems.forEach(item => {
+        item.addEventListener("click", () => {
+            if (item.classList.contains("center")) return;
+
+            // Remove center from current main image
+            document.querySelector(".gallery-item.center").classList.remove("center");
+            document.querySelectorAll(".gallery-item").forEach(el => {
+                el.classList.remove("side");
+            });
+
+            // Add side class to all
+            galleryItems.forEach(el => el.classList.add("side"));
+
+            // Make clicked item center
+            item.classList.remove("side");
+            item.classList.add("center");
+        });
+    });
         const communesParWilaya = {
             "01 - أدرار": ["أدرار", "تامنطيط", "أولف", "تيميمون", "زاوية كنتة", "شروين", "تسابيت", "تمست", "سالي", "أقبلي", "أولاد عيسى", "برج باجي مختار", "رقان", "أوقروت"],
             "02 - الشلف": ["الشلف", "تنس", "بني حواء", "أبو الحسن", "هرنفة", "وادي الفضة", "الكريمية", "المرسى", "وادي سلي", "أولاد فارس", "الصبحة", "بوزغاية", "الزبوجة", "تاجنة", "عين مران", "بناي يعقوب", "الأربعاء", "الخميس", "ابو الحسن"],
@@ -542,100 +564,92 @@
         };
 
         // تحديث البلديات عند اختيار الولاية
-        document.getElementById('state').addEventListener('change', function () {
-            const wilaya = this.value;
-            const communeSelect = document.getElementById('commune');
-            communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
-            if (wilaya && communesParWilaya[wilaya]) {
-                communesParWilaya[wilaya].sort().forEach(c => {
-                    const opt = document.createElement('option');
-                    opt.value = c;
-                    opt.textContent = c;
-                    communeSelect.appendChild(opt);
-                });
-            }
+         const form = document.getElementById("orderForm");
+    const submitBtn = document.querySelector(".submit-btn");
+
+    submitBtn.disabled = true; // تعطيل الزر عند البداية
+    submitBtn.style.opacity = "0.6";
+
+    form.addEventListener("input", () => {
+        const requiredFields = [
+            "phone", "state", "commune", "groomName", "brideName",
+            "weddingYear", "weddingMonth", "weddingDay", "color"
+        ];
+
+        let allFilled = requiredFields.every(id => {
+            const element = document.getElementById(id);
+            return element && element.value.trim() !== "";
         });
 
-        // إرسال النموذج مع دمج التاريخ
-        document.getElementById('orderForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
+        submitBtn.disabled = !allFilled;
+        submitBtn.style.opacity = allFilled ? "1" : "0.6";
+    });
 
-            const year = document.getElementById('weddingYear').value.trim();
-            const month = document.getElementById('weddingMonth').value;
-            const day = document.getElementById('weddingDay').value.trim().padStart(2, '0');
+    // تغيير قائمة البلديات عند اختيار الولاية
+    document.getElementById('state').addEventListener('change', function () {
+        const wilaya = this.value;
+        const communeSelect = document.getElementById('commune');
+        communeSelect.innerHTML = '<option value="">اختر البلدية</option>';
+        if (wilaya && communesParWilaya[wilaya]) {
+            communesParWilaya[wilaya].sort().forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                communeSelect.appendChild(opt);
+            });
+        }
+    });
 
-            if (!year || !month || !day || year.length !== 4 || isNaN(day) || parseInt(day) < 1 || parseInt(day) > 31) {
-                alert('يرجى إدخال تاريخ صحيح');
-                return;
-            }
+    // إرسال النموذج إلى Google Sheet
+    document.getElementById('orderForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
 
-            const weddingDate = `${year}/${month}/${day}`;
+        const year = document.getElementById('weddingYear').value.trim();
+        const month = document.getElementById('weddingMonth').value;
+        const day = document.getElementById('weddingDay').value.trim().padStart(2, '0');
 
-            const formData = new FormData();
-            formData.append('phone', '="' + document.getElementById('phone').value + '"');
-            formData.append('state', document.getElementById('state').value);
-            formData.append('commune', document.getElementById('commune').value);
-            formData.append('groomName', document.getElementById('groomName').value);
-            formData.append('brideName', document.getElementById('brideName').value);
-            formData.append('weddingDate', weddingDate);
-            formData.append('color', document.getElementById('color').value);
-            formData.append('timestamp', new Date().toLocaleString('ar-DZ'));
-
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyLwp8Fs7-gS3uVCTvcWVi0cR0hJCtlEaI1POMToIo7nUv0QOTwx49_qpSSJO0ZI1WLlQ/exec';
-
-            try {
-                const submitBtn = this.querySelector('.submit-btn');
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'جاري الإرسال...';
-
-                const response = await fetch(scriptURL, { method: 'POST', body: formData });
-                const result = await response.json();
-
-                if (result.status === 'success') {
-                    document.getElementById('successMessage').classList.add('show');
-                    this.reset();
-                    document.getElementById('commune').innerHTML = '<option value="">اختر الولاية أولاً</option>';
-                    setTimeout(() => document.getElementById('successMessage').classList.remove('show'), 6000);
-                } else {
-                    alert('خطأ: ' + result.message);
-                }
-            } catch (err) {
-                alert('فشل الإرسال، تأكد من الاتصال بالإنترنت');
-            } finally {
-                const submitBtn = this.querySelector('.submit-btn');
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'اطلب الآن';
-            }
-        });
-
-        // Gallery Interaction
-        const galleryItems = document.querySelectorAll('.gallery-item');
-
-        function swapElements(el1, el2) {
-            const temp = document.createTextNode('');
-            el1.parentNode.insertBefore(temp, el1);
-            el2.parentNode.insertBefore(el1, el2);
-            temp.parentNode.insertBefore(el2, temp);
-            temp.parentNode.removeChild(temp);
+        if (!year || !month || !day || year.length !== 4 || isNaN(day) || parseInt(day) < 1 || parseInt(day) > 31) {
+            alert('يرجى إدخال تاريخ صحيح');
+            return;
         }
 
-        galleryItems.forEach(item => {
-            item.addEventListener('click', function () {
-                if (this.classList.contains('center')) return;
+        const weddingDate = `${year}/${month}/${day}`;
 
-                const currentCenter = document.querySelector('.gallery-item.center');
+        const formData = new FormData();
+        formData.append('phone', '="' + document.getElementById('phone').value + '"');
+        formData.append('state', document.getElementById('state').value);
+        formData.append('commune', document.getElementById('commune').value);
+        formData.append('groomName', document.getElementById('groomName').value);
+        formData.append('brideName', document.getElementById('brideName').value);
+        formData.append('weddingDate', weddingDate);
+        formData.append('color', document.getElementById('color').value);
+        formData.append('timestamp', new Date().toLocaleString('ar-DZ'));
 
-                // Swap classes
-                currentCenter.classList.remove('center');
-                currentCenter.classList.add('side');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzjJbi5Os7_b0xydyo59DmhDFx2BimGiWa8BUMSBZZRwsvsbOUd601beJQul4IktzLo/exec';
 
-                this.classList.remove('side');
-                this.classList.add('center');
+        try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'جاري الإرسال...';
 
-                // Swap DOM positions
-                swapElements(this, currentCenter);
-            });
-        });
+            const response = await fetch(scriptURL, { method: 'POST', body: formData });
+            const result = await response.json();
+
+            if (result.status === 'success') {
+                document.getElementById('successMessage').classList.add('show');
+                this.reset();
+                document.getElementById('commune').innerHTML = '<option value="">اختر الولاية أولاً</option>';
+                setTimeout(() => document.getElementById('successMessage').classList.remove('show'), 6000);
+            } else {
+                alert('خطأ: ' + result.message);
+            }
+        } catch (err) {
+            alert('فشل الإرسال، تأكد من الاتصال بالإنترنت');
+        } finally {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'اطلب الآن';
+            submitBtn.style.opacity = "0.6";
+        }
+    });
     </script>
 </body>
 
